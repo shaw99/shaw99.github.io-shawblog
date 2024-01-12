@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8" />
+    <title>Windows安装教程（WEPE） | Shaw&#39;s blog</title>
+    <meta name="author" content="shaw" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/shawblog/images/avatar.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/shawblog/js/lib/highlight.js"></script>
+
+
+
+<script src="/shawblog/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/shawblog/css/main.css" />
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/shawblog/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/shawblog/">
+            <span>SHAW&#39;S BLOG</span>
+        </a>
+        
+        <a href="/shawblog/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/shawblog/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/shawblog/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/shawblog/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/shawblog/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;SHAW&#39;S BLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/shawblog/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/shawblog/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/shawblog/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/shawblog/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/shawblog/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>Windows安装教程（WEPE）</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/1/12
+        </span>
+        
+        <span class="category">
+            <a href="/shawblog/categories/Windows/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Windows
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/shawblog/tags/Windows/" style="color: #ffa2c4">Windows</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/shawblog/tags/%E6%95%99%E7%A8%8B/" style="color: #00a596">教程</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="Windows安装教程（WEPE）"><a href="#Windows安装教程（WEPE）" class="headerlink" title="Windows安装教程（WEPE）"></a>Windows安装教程（WEPE）</h1><p>在此教程中，你将使用WEPE对电脑进行安装微软官方的Windows系统。</p>
+<span id="more"></span>
+
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ol>
+<li>一台电脑</li>
+<li>一个大小大于8G的U盘</li>
+<li>下载下方必要的文件</li>
+</ol>
+<h2 id="文件下载"><a href="#文件下载" class="headerlink" title="文件下载"></a>文件下载</h2><p>WEPE官方地址：<a target="_blank" rel="noopener" href="https://www.wepe.com.cn/">https://www.wepe.com.cn/</a><br>WEPE下载：<a target="_blank" rel="noopener" href="https://www.wepe.com.cn/download.html">https://www.wepe.com.cn/download.html</a><br>Windows镜像下载：<a target="_blank" rel="noopener" href="https://next.itellyou.cn/">https://next.itellyou.cn/</a></p>
+<h2 id="制作启动盘"><a href="#制作启动盘" class="headerlink" title="制作启动盘"></a>制作启动盘</h2><p>（注意！以下图片部分来源网络，侵权请联系我删除）</p>
+<ol>
+<li>在电脑上插上准备好的U盘，打开wePE工具<br><img src="/shawblog/pageimage/Windows%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%EF%BC%88WEPE%EF%BC%89/1.1.png" alt="img"></li>
+<li>根据以下步骤进行操作（建议关闭杀毒软件）<br><img src="/shawblog/pageimage/Windows%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%EF%BC%88WEPE%EF%BC%89/1.2.png" alt="img"><br><img src="/shawblog/pageimage/Windows%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%EF%BC%88WEPE%EF%BC%89/1.3.png" alt="img"><br><img src="/shawblog/pageimage/Windows%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%EF%BC%88WEPE%EF%BC%89/1.4.png" alt="img"><br>打开此电脑，会发现U盘分为两个分区<br><img src="/shawblog/pageimage/Windows%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%EF%BC%88WEPE%EF%BC%89/1.5.png" alt="img"><br>把工具和下载的系统镜像放在非EFI分区中<br><img src="/shawblog/pageimage/Windows%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%EF%BC%88WEPE%EF%BC%89/1.6.png" alt="img"></li>
+<li>制作启动盘完成！</li>
+</ol>
+<h2 id="进入PE"><a href="#进入PE" class="headerlink" title="进入PE"></a>进入PE</h2><ol>
+<li>将制作好的U盘插入电脑</li>
+<li>重启电脑，启动时连点F*选择启动项，以下供参考<br>台式机主板<br><img src="/shawblog/pageimage/Windows%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%EF%BC%88WEPE%EF%BC%89/2.1.png" alt="img"><br>笔记本电脑<br><img src="/shawblog/pageimage/Windows%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%EF%BC%88WEPE%EF%BC%89/2.2.png" alt="img"><br>品牌电脑<br><img src="/shawblog/pageimage/Windows%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%EF%BC%88WEPE%EF%BC%89/2.3.png" alt="img"></li>
+<li>出现类似下图选择启动项，选择你的U盘<br><img src="/shawblog/pageimage/Windows%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%EF%BC%88WEPE%EF%BC%89/2.4.png" alt="img"></li>
+<li>进入PE</li>
+</ol>
+<h2 id="系统安装"><a href="#系统安装" class="headerlink" title="系统安装"></a>系统安装</h2><ol>
+<li>PE内将要安装的系统ISO镜像挂载为虚拟光驱<br>打开U盘内的存放系统镜像的“ISO”目录，找到要安装的镜像<br><img src="/shawblog/pageimage/Windows%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%EF%BC%88WEPE%EF%BC%89/3.1.png" alt="img"><br>对着ISO镜像点右键，选择挂载，或者直接双击，该ISO就会被挂载为一个新的虚拟的光盘驱动器，和插入安装光盘效果类似。它会显示在“我的电脑”里，并且有一个盘符<br><img src="/shawblog/pageimage/Windows%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%EF%BC%88WEPE%EF%BC%89/3.2.png" alt="img"></li>
+<li>打开桌面上的Windows安装器，输入选项后安装<br>在第一个选项中，请选择系统包install.wim的位置（在刚才挂载出来的虚拟光驱里的source文件夹里），比如H:\sources\install.wim等<br><img src="/shawblog/pageimage/Windows%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%EF%BC%88WEPE%EF%BC%89/3.3.png" alt="img"><br><img src="/shawblog/pageimage/Windows%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%EF%BC%88WEPE%EF%BC%89/3.4.png" alt="img"></li>
+<li>其余的两项填写要安装到的目标系统盘，正常情况下选择 C: 即可</li>
+<li>当选择好三个选项之后，左下角的系统版本按照需要进行选择</li>
+<li>之后就可以点击开始安装，在弹出的确认对话框中再次点确认即可开始安装<br><img src="/shawblog/pageimage/Windows%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%EF%BC%88WEPE%EF%BC%89/3.5.png" alt="img"><br><img src="/shawblog/pageimage/Windows%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%EF%BC%88WEPE%EF%BC%89/3.6.png" alt="img"></li>
+<li>安装完成后，若没有自动重启，请手动重启</li>
+</ol>
+<h2 id="系统配置"><a href="#系统配置" class="headerlink" title="系统配置"></a>系统配置</h2><ol>
+<li>等待系统安装完成，做最后的系统配置<br>重启后，进入系统最后配置页，这里会要求您做一些简单的设置，创建登录账户，按照提示操作即可。<br><img src="/shawblog/pageimage/Windows%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%EF%BC%88WEPE%EF%BC%89/4.1.png" alt="img"><br><img src="/shawblog/pageimage/Windows%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%EF%BC%88WEPE%EF%BC%89/4.2.png" alt="img"><br><img src="/shawblog/pageimage/Windows%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%EF%BC%88WEPE%EF%BC%89/4.3.png" alt="img"><br><img src="/shawblog/pageimage/Windows%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%EF%BC%88WEPE%EF%BC%89/4.4.png" alt="img"><br><img src="/shawblog/pageimage/Windows%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%EF%BC%88WEPE%EF%BC%89/4.5.png" alt="img"><br><img src="/shawblog/pageimage/Windows%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%EF%BC%88WEPE%EF%BC%89/4.6.png" alt="img"><br><img src="/shawblog/pageimage/Windows%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%EF%BC%88WEPE%EF%BC%89/4.7.png" alt="img"></li>
+<li>至此，系统安装完成</li>
+</ol>
+<h2 id="系统激活"><a href="#系统激活" class="headerlink" title="系统激活"></a>系统激活</h2><p>为避免侵权，这里建议使用微软官方正规渠道的正版序列号激活</p>
+<h2 id="安装驱动"><a href="#安装驱动" class="headerlink" title="安装驱动"></a>安装驱动</h2><p>一般Windows10以上系统会联网自动获取驱动，其他请自行安装提前备好的驱动，或者使用驱动安装工具进行安装</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 Shaw&#39;s blog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;shaw
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/shawblog/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>
